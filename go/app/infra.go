@@ -7,8 +7,6 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
-	//"golang.org/x/tools/go/analysis/passes/nilfunc"
-	//"path/filepath"
 	// STEP 5-1: uncomment this line
 	// _ "github.com/mattn/go-sqlite3"
 )

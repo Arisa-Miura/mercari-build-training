@@ -2,6 +2,7 @@ package app
 
 import (
 	"crypto/sha256"
+	"database/sql"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -13,6 +14,8 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Server struct {
@@ -20,6 +23,8 @@ type Server struct {
 	Port string
 	// ImageDirPath is the path to the directory storing images.
 	ImageDirPath string
+	//DB接続
+	DB *sql.DB
 }
 
 // Run is a method to start the server.
@@ -46,7 +51,7 @@ func (s Server) Run() int {
 	// set up routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /", h.Hello)
-	mux.HandleFunc("GET /items", h.GetItem)
+	mux.HandleFunc("GET /items", h.GetItems)
 	mux.HandleFunc("POST /items", h.AddItem)
 	mux.HandleFunc("GET /items/{id}", h.GetItem)
 	mux.HandleFunc("GET /image/{filename}", h.GetImage)
