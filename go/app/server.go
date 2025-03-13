@@ -46,7 +46,7 @@ func (s Server) Run() int {
 	// set up routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /", h.Hello)
-	mux.HandleFunc("GET /items", h.GetItem)
+	mux.HandleFunc("GET /items", h.GetItems)
 	mux.HandleFunc("POST /items", h.AddItem)
 	mux.HandleFunc("GET /items/{id}", h.GetItem)
 	mux.HandleFunc("GET /image/{filename}", h.GetImage)
